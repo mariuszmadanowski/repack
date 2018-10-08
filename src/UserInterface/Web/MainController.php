@@ -7,8 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use App\Domain\Service\DelivererService;
-use App\Domain\Service\RepackagerService;
+use App\Application\Service\DelivererService;
+use App\Application\Service\RepackagerService;
 
 /**
  * Main controller.
@@ -67,11 +67,15 @@ class MainController extends Controller
         dump("MainController repackCargo()");
         $this->truck = $session->get('truck');
         $this->bigTruck = $session->get('bigTruck');
-        //$session->clear();
-        $this->repackagerService->repack($this->truck, $this->bigTruck);
-        $this->deliveryTrucks = $this->repackagerService->getDeliveryTrucks();
-        $this->plane = $this->repackagerService->getPlane();
-        dump($this->deliveryTrucks, $this->plane);
+        $session->clear();
+        if ($this->truck && $this->bigTruck) {
+            $this->repackagerService->repack($this->truck, $this->bigTruck);
+            $this->deliveryTrucks = $this->repackagerService->getDeliveryTrucks();
+            $this->plane = $this->repackagerService->getPlane();
+            dump($this->deliveryTrucks, $this->plane);
+        } else {
+            dump("The cargo was not delivered.");
+        }
         die();
     }
 }

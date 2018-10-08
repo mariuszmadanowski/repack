@@ -2,8 +2,8 @@
 
 namespace App\Domain\Model;
 
-use App\Domain\Model\CargoInterface;
-use App\Domain\Model\CargoStateInterface;
+use App\Domain\Model\ModelInterface\CargoInterface;
+use App\Domain\Model\ModelInterface\CargoStateInterface;
 use App\Domain\ValueObject\Weight;
 
 /**

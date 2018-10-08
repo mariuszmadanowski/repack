@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Model;
+namespace App\Application\Specification;
 
-use App\Domain\Model\SpecificationInterface;
+use App\Application\Specification\SpecificationInterface;
 
 abstract class Specification implements SpecificationInterface
 {

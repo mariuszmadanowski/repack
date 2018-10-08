@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Domain\Service;
+namespace App\Application\Service;
 
 use App\Domain\Model\DeliveryTruck;
 use App\Domain\Model\Plane;
 use App\Domain\Model\Truck;
 use App\Domain\Model\BigTruck;
-use App\Domain\Model\WeightSpecification;
+use App\Application\Specification\WeightSpecification;
 use App\Domain\ValueObject\Weight;
-use App\Domain\Model\ReceivingCapacitySpecification;
+use App\Application\Specification\ReceivingCapacitySpecification;
 use App\Domain\ValueObject\ReceivingCapacity;
 
 /**
@@ -30,6 +30,26 @@ class RepackagerService
         $this->createDeliveryTruckSpecification();
         $this->createPlaneSpecification();
     }
+
+    public function repack(Truck $truck, BigTruck $bigTruck): void
+    {
+        dump("RepackagerService repack()");
+        $plane = $this->createPlane();
+        $this->plane = $this->repackBigTruckToPlane($bigTruck, $plane);
+
+        $this->repackTruckToDeliveryTruck($truck);
+    }
+
+    public function getDeliveryTrucks(): array
+    {
+        return $this->deliveryTrucks;
+    }
+
+    public function getPlane(): Plane
+    {
+        return $this->plane;
+    }
+
     private function createDeliveryTruckSpecification(): void
     {
         $this->deliveryTruckSpecification = new ReceivingCapacitySpecification(new ReceivingCapacity(new Weight(200, 'kg')));
@@ -95,24 +115,5 @@ class RepackagerService
             }
         }
         dump($this->deliveryTrucks);
-    }
-
-    public function repack(Truck $truck, BigTruck $bigTruck): void
-    {
-        dump("RepackagerService repack()");
-        $plane = $this->createPlane();
-        $this->plane = $this->repackBigTruckToPlane($bigTruck, $plane);
-
-        $this->repackTruckToDeliveryTruck($truck);
-    }
-
-    public function getDeliveryTrucks(): array
-    {
-        return $this->deliveryTrucks;
-    }
-
-    public function getPlane(): Plane
-    {
-        return $this->plane;
     }
 }

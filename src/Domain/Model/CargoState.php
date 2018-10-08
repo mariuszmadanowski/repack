@@ -3,9 +3,8 @@
 namespace App\Domain\Model;
 
 use App\Domain\Model\Conveyance;
-use App\Domain\Model\CargoStateInterface;
+use App\Domain\Model\ModelInterface\CargoStateInterface;
 
-// czy to napewno powinien być model?
 /**
  * @model
  */

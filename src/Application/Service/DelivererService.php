@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Domain\Service;
+namespace App\Application\Service;
 
 use App\Domain\Model\Truck;
 use App\Domain\Model\Box;
 use App\Domain\Model\BigTruck;
 use App\Domain\Model\AgriculturalMachine;
-use App\Domain\Model\WeightSpecification;
+use App\Application\Specification\WeightSpecification;
 use App\Domain\ValueObject\Weight;
-use App\Domain\Model\CapacitySpecification;
+use App\Application\Specification\CapacitySpecification;
 use App\Domain\ValueObject\Capacity;
 
 /**
@@ -33,6 +33,26 @@ class DelivererService
         $this->createTruckSpecification();
         $this->createBigTruckSpecification();
         $this->createAgriculturalMachineSpecification();
+    }
+
+    public function prepareDelivery(): void
+    {
+        dump("DelivererService prepareDelivery()");
+        $truck = $this->createTruck();
+        $this->truck = $this->loadTruck($truck);
+
+        $bigTruck = $this->createBigTruck();
+        $this->bigTruck = $this->loadBigTruck($bigTruck);
+    }
+
+    public function getTruck(): Truck
+    {
+        return $this->truck;
+    }
+
+    public function getBigTruck(): BigTruck
+    {
+        return $this->bigTruck;
     }
 
     private function createBoxSpecification(): void
@@ -122,25 +142,5 @@ class DelivererService
         }
         dump($bigTruck);
         return $bigTruck;
-    }
-
-    public function prepareDelivery(): void
-    {
-        dump("DelivererService prepareDelivery()");
-        $truck = $this->createTruck();
-        $this->truck = $this->loadTruck($truck);
-
-        $bigTruck = $this->createBigTruck();
-        $this->bigTruck = $this->loadBigTruck($bigTruck);
-    }
-
-    public function getTruck(): Truck
-    {
-        return $this->truck;
-    }
-
-    public function getBigTruck(): BigTruck
-    {
-        return $this->bigTruck;
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Domain\Model;
 
-use App\Domain\Model\ReceivingConveyanceInterface;
+use App\Domain\Model\ModelInterface\ReceivingConveyanceInterface;
 use App\Domain\Model\Conveyance;
-use App\Domain\Model\CargoInterface;
+use App\Domain\Model\ModelInterface\CargoInterface;
 use App\Domain\ValueObject\ReceivingCapacity;
 use App\Domain\Model\CargoState;
 use App\Domain\ValueObject\Weight;

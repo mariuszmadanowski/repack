@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Model;
+namespace App\Domain\Model\ModelInterface;
 
-use App\Domain\Model\CargoStateInterface;
+use App\Domain\Model\ModelInterface\CargoStateInterface;
 
 interface CargoInterface
 {

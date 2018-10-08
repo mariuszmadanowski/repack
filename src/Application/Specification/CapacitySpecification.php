@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Model;
+namespace App\Application\Specification;
 
-use App\Domain\Model\Specification;
+use App\Application\Specification\Specification;
 use App\Domain\ValueObject\Capacity;
 
 class CapacitySpecification extends Specification

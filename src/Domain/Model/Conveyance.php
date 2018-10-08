@@ -2,7 +2,8 @@
 
 namespace App\Domain\Model;
 
-use App\Domain\Model\ConveyanceInterface;
+use App\Domain\Model\ModelInterface\ConveyanceInterface;
+use App\Domain\Model\ModelInterface\CargoInterface;
 
 /**
  * @model

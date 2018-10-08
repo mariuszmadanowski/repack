@@ -27,10 +27,10 @@ services:
     # please note that last definitions always *replace* previous ones
 
     deliverer_service:
-        class: App\Domain\Service\DelivererService
+        class: App\Application\Service\DelivererService
         shared: false
     repackager_service:
-        class: App\Domain\Service\RepackagerService
+        class: App\Application\Service\RepackagerService
         shared: false
     app.main_controller:
         class: App\UserInterface\Web\MainController
